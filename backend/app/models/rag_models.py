@@ -14,7 +14,7 @@ class RetrieveRequest(BaseModel):
 
 class RetrieveResponse(BaseModel):
     content: str
-    metadata: Dict[str, Any]
+    metadata: Optional[Dict[str, Any]] = None
     score: float
 
 class IngestResponse(BaseModel):

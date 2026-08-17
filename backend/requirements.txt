@@ -6,9 +6,10 @@ alembic
 passlib[bcrypt]
 python-jose[cryptography]
 python-multipart
-langchain
-langchain-google-genai
-langchain-community
-qdrant-client
-langchain-qdrant
-pypdf
+langchain>=0.1.0
+langchain-google-genai==4.3.4
+langchain-community>=0.0.10
+qdrant-client>=1.7.0
+langchain-qdrant==1.1.0
+pypdf>=4.0.0
+pywin32>=306 ; sys_platform == 'win32'

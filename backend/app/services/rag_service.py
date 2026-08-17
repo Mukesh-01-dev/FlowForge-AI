@@ -7,7 +7,7 @@ from app.config.vector_store import get_vector_store
 
 class RAGService:
     @staticmethod
-    async def ingest_document(file_content: bytes, filename: str, chunk_size: int, chunk_overlap: int, collection_name: str, metadata: Dict[str, Any] = None) -> int:
+    def ingest_document(file_content: bytes, filename: str, chunk_size: int, chunk_overlap: int, collection_name: str, metadata: Dict[str, Any] = None) -> int:
         """
         Parses a document (PDF), splits it into chunks, and stores it in Qdrant.
         """

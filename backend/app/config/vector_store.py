@@ -10,8 +10,10 @@ load_dotenv()
 qdrant_client = QdrantClient(path="./qdrant_data")
 
 # Initialize embeddings
-# Assuming GEMINI_API_KEY is in the environment
-embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", google_api_key=os.getenv("GEMINI_API_KEY"))
+gemini_key = os.getenv("GEMINI_API_KEY")
+if not gemini_key:
+    raise RuntimeError("GEMINI_API_KEY is not set in the environment (backend/.env)")
+embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", google_api_key=gemini_key)
 
 def get_vector_store(collection_name: str):
     """
