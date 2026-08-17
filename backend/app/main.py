@@ -6,7 +6,11 @@ and set up any global application events (like lifespan events) here.
 """
 from fastapi import FastAPI
 
+from app.routes.rag import router as rag_router
+
 app = FastAPI(title="FlowForge-AI API")
+
+app.include_router(rag_router, prefix="/api")
 
 @app.get("/")
 def read_root():

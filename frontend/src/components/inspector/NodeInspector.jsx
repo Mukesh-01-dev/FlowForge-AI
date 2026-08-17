@@ -571,6 +571,171 @@ export default function NodeInspector({
                 </div>
               </div>
             )}
+
+            {/* Document Loader Parameters */}
+            {nodeType === 'documentLoader' && (
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px', color: 'var(--text-muted)' }}>
+                  File Path
+                </label>
+                <input
+                  type="text"
+                  value={params.filePath || ''}
+                  onChange={(e) => updateNodeParams(selectedNode.id, { ...params, filePath: e.target.value })}
+                  placeholder="Path to PDF..."
+                  style={{
+                    width: '100%',
+                    padding: '8px 10px',
+                    background: 'var(--bg-main)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '6px',
+                    color: 'var(--text-main)',
+                    fontSize: '12px',
+                    outline: 'none',
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Text Splitter Parameters */}
+            {nodeType === 'textSplitter' && (
+              <>
+                <div style={{ marginBottom: '14px' }}>
+                  <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px', color: 'var(--text-muted)' }}>
+                    Chunk Size
+                  </label>
+                  <input
+                    type="number"
+                    value={params.chunk_size ?? 1000}
+                    onChange={(e) => updateNodeParams(selectedNode.id, { ...params, chunk_size: parseInt(e.target.value, 10) || 1000 })}
+                    style={{
+                      width: '100%',
+                      padding: '8px 10px',
+                      background: 'var(--bg-main)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: '6px',
+                      color: 'var(--text-main)',
+                      fontSize: '12px',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+                <div style={{ marginBottom: '14px' }}>
+                  <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px', color: 'var(--text-muted)' }}>
+                    Chunk Overlap
+                  </label>
+                  <input
+                    type="number"
+                    value={params.chunk_overlap ?? 200}
+                    onChange={(e) => updateNodeParams(selectedNode.id, { ...params, chunk_overlap: parseInt(e.target.value, 10) || 200 })}
+                    style={{
+                      width: '100%',
+                      padding: '8px 10px',
+                      background: 'var(--bg-main)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: '6px',
+                      color: 'var(--text-main)',
+                      fontSize: '12px',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+              </>
+            )}
+
+            {/* Embedding Parameters */}
+            {nodeType === 'embedding' && (
+              <>
+                <div style={{ marginBottom: '14px' }}>
+                  <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px', color: 'var(--text-muted)' }}>
+                    Provider
+                  </label>
+                  <input
+                    type="text"
+                    value={params.provider || 'gemini'}
+                    onChange={(e) => updateNodeParams(selectedNode.id, { ...params, provider: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '8px 10px',
+                      background: 'var(--bg-main)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: '6px',
+                      color: 'var(--text-main)',
+                      fontSize: '12px',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+                <div style={{ marginBottom: '14px' }}>
+                  <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px', color: 'var(--text-muted)' }}>
+                    Model
+                  </label>
+                  <input
+                    type="text"
+                    value={params.model || 'models/text-embedding-004'}
+                    onChange={(e) => updateNodeParams(selectedNode.id, { ...params, model: e.target.value })}
+                    style={{
+                      width: '100%',
+                      padding: '8px 10px',
+                      background: 'var(--bg-main)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: '6px',
+                      color: 'var(--text-main)',
+                      fontSize: '12px',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+              </>
+            )}
+
+            {/* Vector DB Parameters */}
+            {nodeType === 'vectorDb' && (
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px', color: 'var(--text-muted)' }}>
+                  Collection Name
+                </label>
+                <input
+                  type="text"
+                  value={params.collection_name || 'default_collection'}
+                  onChange={(e) => updateNodeParams(selectedNode.id, { ...params, collection_name: e.target.value })}
+                  style={{
+                    width: '100%',
+                    padding: '8px 10px',
+                    background: 'var(--bg-main)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '6px',
+                    color: 'var(--text-main)',
+                    fontSize: '12px',
+                    outline: 'none',
+                  }}
+                />
+              </div>
+            )}
+
+            {/* Retriever Parameters */}
+            {nodeType === 'retriever' && (
+              <div style={{ marginBottom: '14px' }}>
+                <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px', color: 'var(--text-muted)' }}>
+                  Top K
+                </label>
+                <input
+                  type="number"
+                  value={params.top_k ?? 4}
+                  onChange={(e) => updateNodeParams(selectedNode.id, { ...params, top_k: parseInt(e.target.value, 10) || 4 })}
+                  style={{
+                    width: '100%',
+                    padding: '8px 10px',
+                    background: 'var(--bg-main)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '6px',
+                    color: 'var(--text-main)',
+                    fontSize: '12px',
+                    outline: 'none',
+                  }}
+                />
+              </div>
+            )}
           </>
         ) : (
           /* Run Output Panel Tab */
