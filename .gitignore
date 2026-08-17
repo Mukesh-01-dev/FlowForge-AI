@@ -12,6 +12,7 @@ env/
 # Database
 *.sqlite3
 *.db
+qdrant_data/
 
 # Testing
 .pytest_cache/
